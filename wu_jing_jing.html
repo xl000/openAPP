@@ -14,35 +14,43 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             background-image: url('./newbg.png'); /* Replace with your background image URL */
             background-size: cover;
             background-position: center;
             color: #333;
+            text-align: center; /* 中心对齐文字 */
         }
 
         h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
         }
 
         .time-display {
-            font-size: 1.5em;
+            font-size: 1.2rem;
             margin-bottom: 20px;
         }
 
         .time-selector {
             margin: 20px 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+        }
+
+        .time-selector label {
+            margin-bottom: 10px;
+            font-size: 1rem;
         }
 
         input[type="time"] {
-            font-size: 1.2em;
+            font-size: 1.2rem;
             padding: 5px;
             border: 2px solid #f5a6b7;
             border-radius: 5px;
+            width: 80%; /* 宽度自适应 */
+            max-width: 300px; /* 最大宽度 */
         }
 
         .button {
@@ -51,18 +59,20 @@
             justify-content: center;
             margin: 20px;
             padding: 10px 20px;
-            font-size: 1.2em;
+            font-size: 1.2rem;
             color: white;
             background-color: #f78fb3;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 80%; /* 宽度自适应 */
+            max-width: 300px; /* 最大宽度 */
         }
 
         .button img {
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             margin-right: 10px;
         }
 
@@ -71,15 +81,46 @@
         }
 
         .result {
-            font-size: 1.5em;
+            font-size: 1.2rem;
             margin-top: 20px;
             color: #555;
         }
 
         .footer {
-            font-size: 0.8em;
+            font-size: 0.9rem;
             margin-top: 30px;
             color: #777;
+            padding: 0 20px; /* 增加内边距，避免小屏幕溢出 */
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .time-display {
+                font-size: 1rem;
+            }
+
+            .button {
+                font-size: 1rem;
+            }
+
+            .result {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .button img {
+                width: 20px;
+                height: 20px;
+            }
         }
     </style>
 </head>
