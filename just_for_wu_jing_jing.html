@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>煮粥预约计算器</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe4e1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('https://example.com/pink-cute-background.jpg'); /* Replace with your background image URL */
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .time-display {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .time-selector {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input[type="time"] {
+            font-size: 1.2em;
+            padding: 5px;
+            border: 2px solid #f5a6b7;
+            border-radius: 5px;
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #f78fb3;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .button:hover {
+            background-color: #ff6b81;
+        }
+
+        .result {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        .footer {
+            font-size: 0.8em;
+            margin-top: 30px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>煮粥预约计算器</h1>
+    <div class="time-display" id="current-time">当前时间: --:--:--</div>
+    <div class="time-selector">
+        <label for="cook-time">选择明天的煮粥时间: </label>
+        <input type="time" id="cook-time" value="07:00">
+    </div>
+    <button class="button" onclick="calculateTime()">
+        <img src="https://png.pngtree.com/png-clipart/20240914/original/pngtree-cute-samoyed-dog-cartoon-jumping-png-image_16004464.png" alt="卡通萨摩耶"> <!-- Replace with your Samoyed image URL -->
+        设定完毕
+    </button>
+    <div class="result" id="result">预约时间为: --</div>
+
+    <div class="footer">温馨提示：提前洗好米，预约好时间，安心生活！</div>
+
+    <script>
+        function updateCurrentTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('zh-CN', { hour12: false });
+            document.getElementById('current-time').innerText = `当前时间: ${timeString}`;
+        }
+
+        function calculateTime() {
+            const now = new Date();
+            const cookTimeInput = document.getElementById('cook-time').value;
+
+            if (!cookTimeInput) {
+                alert('请选择一个时间！');
+                return;
+            }
+
+            const [hours, minutes] = cookTimeInput.split(':');
+            const cookTime = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, parseInt(hours), parseInt(minutes));
+            const diffMs = cookTime - now;
+
+            if (diffMs <= 0) {
+                alert('请选择一个有效的时间！');
+                return;
+            }
+
+            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+            const diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+            const diffSeconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+            document.getElementById('result').innerText = `预约时间为: ${diffHours}小时 ${diffMinutes}分钟 ${diffSeconds}秒`;
+        }
+
+        setInterval(updateCurrentTime, 1000);
+
+        // Initialize current time on page load
+        updateCurrentTime();
+    </script>
+</body>
+</html>
